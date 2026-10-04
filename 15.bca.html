@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>BCA AJAX</title>
+</head>
+
+<body>
+
+    <h2>BCA Information</h2>
+
+    <button onclick="loadBCA()">Display BCA Content</button>
+
+    <br><br>
+
+    <div id="result"></div>
+
+
+    <script>
+
+        function loadBCA() {
+
+            // Create XMLHttpRequest object
+            var xhttp = new XMLHttpRequest();
+
+
+            // Check AJAX response
+            xhttp.onreadystatechange = function () {
+
+                if (this.readyState == 4 && this.status == 200) {
+
+                    // Display bca.txt content
+                    document.getElementById("result").innerHTML =
+                        this.responseText;
+                }
+
+            };
+
+
+            // Request bca.txt file
+            xhttp.open("GET", "11.bca.txt", true);
+
+
+            // Send request
+            xhttp.send();
+
+        }
+
+    </script>
+
+</body>
+
+</html>

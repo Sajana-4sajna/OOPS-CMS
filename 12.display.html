@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Movie Details Using AJAX</title>
+
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: center;
+        }
+
+        th {
+            background-color: lightgray;
+        }
+
+        img {
+            width: 80px;
+            height: 110px;
+        }
+    </style>
+</head>
+
+<body>
+
+<h2>Movie Details</h2>
+
+<button onclick="loadMovies()">Display Movies</button>
+
+<br><br>
+
+<table>
+
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Title</th>
+            <th>Poster</th>
+            <th>Year</th>
+            <th>Genre</th>
+            <th>Rating</th>
+            <th>Director</th>
+            <th>Country</th>
+            <th>Language</th>
+            <th>Actors</th>
+        </tr>
+    </thead>
+
+    <tbody id="movieData">
+
+    </tbody>
+
+</table>
+
+
+<script>
+
+function loadMovies() {
+
+    // Create AJAX object
+    var xhttp = new XMLHttpRequest();
+
+
+    xhttp.onreadystatechange = function () {
+
+        if (this.readyState == 4 && this.status == 200) {
+
+            // Convert JSON into JavaScript object
+            var movies = JSON.parse(this.responseText);
+
+            var output = "";
+
+
+            // Loop through movie data
+            for (var i = 0; i < movies.length; i++) {
+
+                output += "<tr>";
+
+                output += "<td>" +
+                          movies[i].id +
+                          "</td>";
+
+
+                output += "<td>" +
+                          movies[i].title +
+                          "</td>";
+
+
+                output += "<td>" +
+                          "<img src='" + movies[i].poster + "'>" +
+                          "</td>";
+
+
+                output += "<td>" +
+                          movies[i].year +
+                          "</td>";
+
+
+                output += "<td>" +
+                          movies[i].genre +
+                          "</td>";
+
+
+                output += "<td>" +
+                          movies[i].rating +
+                          "</td>";
+
+
+                output += "<td>" +
+                          movies[i].director +
+                          "</td>";
+
+
+                output += "<td>" +
+                          movies[i].country +
+                          "</td>";
+
+
+                output += "<td>" +
+                          movies[i].language +
+                          "</td>";
+
+
+                output += "<td>" +
+                          movies[i].actors +
+                          "</td>";
+
+
+                output += "</tr>";
+            }
+
+
+            // Display data in table
+            document.getElementById("movieData").innerHTML = output;
+
+        }
+
+    };
+
+
+    // API URL
+    xhttp.open(
+        "GET",
+        "https://freetestapi.com/api/v1/movies",
+        true
+    );
+
+
+    // Send AJAX request
+    xhttp.send();
+
+}
+
+</script>
+
+</body>
+</html>

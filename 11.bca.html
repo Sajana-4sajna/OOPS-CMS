@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>BCA Information</title>
+</head>
+
+<body>
+
+    <h2>BCA Information</h2>
+
+    <button onclick="loadBCA()">Display BCA Content</button>
+
+    <br><br>
+
+    <div id="result"></div>
+
+
+    <script>
+
+        function loadBCA() {
+
+            // Create AJAX object
+            var xhttp = new XMLHttpRequest();
+
+
+            // Function runs when response is received
+            xhttp.onreadystatechange = function () {
+
+                if (this.readyState == 4 && this.status == 200) {
+
+                    document.getElementById("result").innerHTML =
+                        this.responseText;
+
+                }
+
+            };
+
+
+            // Open bca.txt file
+            xhttp.open("GET", "11.bca.txt", true);
+
+
+            // Send AJAX request
+            xhttp.send();
+
+        }
+
+    </script>
+
+</body>
+
+</html>
+
+11 and 15 are same qn
+qn 8,9 and 12 ko output baki xa
